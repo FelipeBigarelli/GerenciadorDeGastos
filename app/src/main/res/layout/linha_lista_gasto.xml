@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/listViewLinhaGasto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textViewNomeGasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/textViewNomeGasto"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewValor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/textViewValor"
+        app:layout_constraintStart_toStartOf="@+id/textViewNomeGasto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNomeGasto" />
+
+    <TextView
+        android:id="@+id/textViewTipoDoGasto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/textViewTipoDoGasto"
+        app:layout_constraintStart_toStartOf="@+id/textViewValor"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValor" />
+
+    <TextView
+        android:id="@+id/textViewRelevante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/textViewRelevante"
+        app:layout_constraintStart_toStartOf="@+id/textViewTipoDoGasto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTipoDoGasto" />
+
+    <TextView
+        android:id="@+id/textViewTipoPagamento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:paddingBottom="16dp"
+        android:text="@string/textViewTipoPagamento"
+        app:layout_constraintStart_toStartOf="@+id/textViewRelevante"
+        app:layout_constraintTop_toBottomOf="@+id/textViewRelevante" />
+
+    <TextView
+        android:id="@+id/textViewValueNomeGasto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewNomeGasto"
+        app:layout_constraintTop_toTopOf="@+id/textViewNomeGasto" />
+
+    <TextView
+        android:id="@+id/textViewValueValorGasto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewValor"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValueNomeGasto" />
+
+    <TextView
+        android:id="@+id/textViewValueTipoGasto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewTipoDoGasto"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValueValorGasto" />
+
+    <TextView
+        android:id="@+id/textViewValueRelevante"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewRelevante"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValueTipoGasto" />
+
+    <TextView
+        android:id="@+id/textViewValueTipoPagamento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewTipoPagamento"
+        app:layout_constraintTop_toBottomOf="@+id/textViewValueRelevante" />
+</androidx.constraintlayout.widget.ConstraintLayout>
