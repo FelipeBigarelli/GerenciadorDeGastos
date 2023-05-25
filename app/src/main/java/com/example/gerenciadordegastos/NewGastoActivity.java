@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.gerenciadordegastos.modelo.Gasto;
+import com.example.gerenciadordegastos.persistencia.GastosDatabase;
 
 import java.util.ArrayList;
 public class NewGastoActivity extends AppCompatActivity {
@@ -171,33 +172,38 @@ public class NewGastoActivity extends AppCompatActivity {
             return;
         }
 
+        int tipo;
+
         switch (radioGroupTipoGasto.getCheckedRadioButtonId()) {
             case R.id.radioButtonContasCasa:
-                tipoSelecionado = TipoGasto.House;
+                tipo = Gasto.HOUSE;
                 break;
 
             case R.id.radioButtonMercado:
-                tipoSelecionado = TipoGasto.Marketplace;
+                tipo = Gasto.MARKETPLACE;
                 break;
 
             case R.id.radioButtonOutros:
-                tipoSelecionado = TipoGasto.Others;
+                tipo = Gasto.OTHERS;
                 break;
+
+            default:
+                tipo = -1;
         }
 
-        if(tipoSelecionado == null) {
+        /*if(tipoSelecionado == null) {
             Toast.makeText(this, R.string.noTypeSelected, Toast.LENGTH_SHORT).show();
 
             return;
-        }
+        }*/
 
-        if (cbGastoRelevante.isChecked()) {
+        /*if (cbGastoRelevante.isChecked()) {
             checkBoxMessage += getString(R.string.gastoRelevante);
         } else {
             checkBoxMessage += getString(R.string.gastoNaoRelevante);
-        }
+        }*/
 
-        Intent intent = new Intent();
+        /*Intent intent = new Intent();
 
         intent.putExtra(NOME, nomeGasto);
         intent.putExtra(VALOR, Float.valueOf(valorGasto).floatValue());
@@ -209,9 +215,28 @@ public class NewGastoActivity extends AppCompatActivity {
 
 
         intent.putExtra(RELEVANTE, cbGastoRelevante.isChecked());
-        intent.putExtra(TIPO_PAGAMENTO, spinnerTipoSelecionado);
+        intent.putExtra(TIPO_PAGAMENTO, spinnerTipoSelecionado);*/
 
-        setResult(Activity.RESULT_OK, intent);
+        boolean isRelevante = cbGastoRelevante.isChecked();
+        String tipoPagamento = (String) spinnerTipoPagamento.getSelectedItem();
+
+        GastosDatabase database = GastosDatabase.getDatabase(this);
+
+        gasto.setNome(nomeGasto);
+        gasto.setValor(Float.valueOf(valorGasto));
+        gasto.setTipoGasto(tipo);
+        gasto.setRelevante(isRelevante);
+        gasto.setTipoPagamento(tipoPagamento);
+
+
+
+        if(modo == NOVO) {
+            database.gastoDAO().insert(gasto);
+        } else {
+            database.gastoDAO().update(gasto);
+        }
+
+        setResult(Activity.RESULT_OK);
 
         finish();
     }
