@@ -1,3 +1,4 @@
+/*
 package com.example.gerenciadordegastos;
 
 public enum TipoGasto {
@@ -5,3 +6,4 @@ public enum TipoGasto {
     Marketplace,
     Others;
 }
+*/

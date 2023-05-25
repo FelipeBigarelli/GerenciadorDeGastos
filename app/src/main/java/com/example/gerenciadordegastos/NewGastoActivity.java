@@ -34,7 +34,7 @@ public class NewGastoActivity extends AppCompatActivity {
     private int modo;
     private String nomeOriginal;
     private Float valorOriginal;
-    private TipoGasto tipoGastoOriginal;
+    //private TipoGasto tipoGastoOriginal;
     private Boolean relevanteOriginal;
     private String tipoPagamentoOriginal;
 
@@ -105,22 +105,22 @@ public class NewGastoActivity extends AppCompatActivity {
                 valorOriginal = bundle.getFloat(VALOR);
                 editTextValorGasto.setText(String.valueOf(valorOriginal));
 
-                TipoGasto tipoGasto = (TipoGasto) bundle.getSerializable(TIPO_GASTO);
+                int tipoGasto = bundle.getInt(TIPO_GASTO);
 
                 RadioButton button;
 
                 switch(tipoGasto) {
-                    case House:
+                    case Gasto.HOUSE:
                         button = findViewById(R.id.radioButtonContasCasa);
                         button.setChecked(true);
                         break;
 
-                    case Marketplace:
+                    case Gasto.MARKETPLACE:
                         button = findViewById(R.id.radioButtonMercado);
                         button.setChecked(true);
                         break;
 
-                    case Others:
+                    case Gasto.OTHERS:
                         button = findViewById(R.id.radioButtonOutros);
                         button.setChecked(true);
                         break;
@@ -147,7 +147,7 @@ public class NewGastoActivity extends AppCompatActivity {
     public void salvarGasto() {
         String nomeGasto = editTextNomeGasto.getText().toString();
         String valorGasto = editTextValorGasto.getText().toString();
-        TipoGasto tipoSelecionado = null;
+        //TipoGasto tipoSelecionado = null;
         String checkBoxMessage = "";
         String spinnerTipoSelecionado = (String) spinnerTipoPagamento.getSelectedItem();
         String spinnerMessage;

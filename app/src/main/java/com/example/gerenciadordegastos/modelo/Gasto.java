@@ -1,6 +1,6 @@
 package com.example.gerenciadordegastos.modelo;
 
-import com.example.gerenciadordegastos.TipoGasto;
+//import com.example.gerenciadordegastos.TipoGasto;
 //import android.arch.persistence.room.Entity;
 //import android.arch.persistence.room.PrimaryKey;
 //import android.support.annotation.NonNull;

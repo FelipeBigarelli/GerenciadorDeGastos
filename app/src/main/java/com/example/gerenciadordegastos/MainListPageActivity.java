@@ -229,6 +229,8 @@ public class MainListPageActivity extends AppCompatActivity {
 
         database.gastoDAO().delete(gasto);
 
+        listaGastoAdapter.remove(gasto);
+
         listaGastoAdapter.notifyDataSetChanged();
     }
 

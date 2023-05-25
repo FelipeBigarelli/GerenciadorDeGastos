@@ -48,6 +48,14 @@ public class GastoAdapter extends BaseAdapter {
         return 0;
     }
 
+    /*public void remove(int position){
+        gastos.remove(gastos.get(position));
+    }*/
+
+    public void remove(Object object) {
+        gastos.remove(object);
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         GastoHolder holder;
