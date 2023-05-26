@@ -172,7 +172,7 @@ public class NewGastoActivity extends AppCompatActivity {
             return;
         }
 
-        int tipo;
+        int tipo = -1;
 
         switch (radioGroupTipoGasto.getCheckedRadioButtonId()) {
             case R.id.radioButtonContasCasa:
@@ -191,11 +191,11 @@ public class NewGastoActivity extends AppCompatActivity {
                 tipo = -1;
         }
 
-        /*if(tipoSelecionado == null) {
+        if(tipo == -1) {
             Toast.makeText(this, R.string.noTypeSelected, Toast.LENGTH_SHORT).show();
 
             return;
-        }*/
+        }
 
         /*if (cbGastoRelevante.isChecked()) {
             checkBoxMessage += getString(R.string.gastoRelevante);
