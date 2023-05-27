@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,9 +18,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.gerenciadordegastos.modelo.Gasto;
+import com.example.gerenciadordegastos.modelo.TiposGasto;
 import com.example.gerenciadordegastos.persistencia.GastosDatabase;
 
 import java.util.ArrayList;
+import java.util.List;
+
 public class NewGastoActivity extends AppCompatActivity {
 
     public static final String ID = "ID";
@@ -43,8 +47,11 @@ public class NewGastoActivity extends AppCompatActivity {
     private RadioGroup radioGroupTipoGasto;
     private CheckBox cbGastoRelevante;
     private Spinner spinnerTipoPagamento;
+    private Spinner    spinnerTipo;
+
 
     private Gasto gasto;
+    private List<TiposGasto> listaTipos;
 
     public static void novoGasto(Activity activity, int requestCode){
 
@@ -98,6 +105,29 @@ public class NewGastoActivity extends AppCompatActivity {
 
                 gasto = new Gasto("");
             } else {
+                setTitle(R.string.setTitleAlterarGasto);
+
+                AsyncTask.execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        int id = bundle.getInt(ID);
+
+                        GastosDatabase database = GastosDatabase.getDatabase(NewGastoActivity.this);
+
+                        gasto = database.gastoDAO().queryForId(id);
+
+                        NewGastoActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                editTextNomeGasto.setText(gasto.getNome());
+                                editTextValorGasto.setText(VALOR);
+
+                                int posicao = posicaoTipo(gasto.getTipoId());
+                                spinnerTipo.setSelection(posicao);
+                            }
+                        });
+                    }
+                });
 
                 nomeOriginal = bundle.getString(NOME);
                 editTextNomeGasto.setText(nomeOriginal);
@@ -138,10 +168,22 @@ public class NewGastoActivity extends AppCompatActivity {
                         break;
                     }
                 }
-
-                setTitle(getString(R.string.setTitleAlterarGasto));
             }
         }
+    }
+
+    private int posicaoTipo(int tipoId){
+
+        for (int pos = 0; pos < listaTipos.size(); pos++){
+
+            TiposGasto t = listaTipos.get(pos);
+
+            if (t.getId() == tipoId){
+                return pos;
+            }
+        }
+
+        return -1;
     }
 
     public void salvarGasto() {
@@ -228,17 +270,24 @@ public class NewGastoActivity extends AppCompatActivity {
         gasto.setRelevante(isRelevante);
         gasto.setTipoPagamento(tipoPagamento);
 
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                GastosDatabase database = GastosDatabase.getDatabase(NewGastoActivity.this);
 
+                if (modo == NOVO) {
 
-        if(modo == NOVO) {
-            database.gastoDAO().insert(gasto);
-        } else {
-            database.gastoDAO().update(gasto);
-        }
+                    database.gastoDAO().insert(gasto);
 
-        setResult(Activity.RESULT_OK);
+                } else {
 
-        finish();
+                    database.gastoDAO().update(gasto);
+                }
+
+                setResult(Activity.RESULT_OK);
+                finish();
+            }
+        });
     }
 
     private void popularSpinnerTipoPagamento() {

@@ -6,12 +6,17 @@ package com.example.gerenciadordegastos.modelo;
 //import android.support.annotation.NonNull;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
 import java.math.BigDecimal;
 
-@Entity
+@Entity(tableName = "gastos",
+        foreignKeys = @ForeignKey(entity = TiposGasto.class,
+                                  parentColumns = "id",
+                                  childColumns = "tipoId"))
 public class Gasto {
     public static final int HOUSE = 1;
     public static final int MARKETPLACE = 2;
@@ -19,12 +24,20 @@ public class Gasto {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+
     @NonNull
     private String nome;
+
     private Float valor;
+
     //private TipoGasto tipoGasto;
     private int tipoGasto;
+
+    @ColumnInfo(index = true)
+    private int tipoId;
+
     private Boolean relevante;
+
     private String tipoPagamento;
 
     public Gasto (String nome) {
@@ -56,8 +69,16 @@ public class Gasto {
         this.valor = valor;
     }
 
-    public int getTipoGasto() {
+    /*public int getTipoGasto() {
         return tipoGasto;
+    }*/
+
+    public int getTipoId() {
+        return tipoId;
+    }
+
+    public void setTipoId(int tipoId) {
+        this.tipoId = tipoId;
     }
 
     public void setTipoGasto(int tipoGasto) {

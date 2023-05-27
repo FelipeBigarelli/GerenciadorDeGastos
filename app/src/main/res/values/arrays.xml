@@ -1,67 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="nome">
-        <item>@string/crepe</item>
+    <string-array name="tipos_iniciais">
+        <item>@string/contaCasa</item>
         <item>@string/mercado</item>
-        <item>@string/internet</item>
-        <item>@string/agua</item>
-        <item>@string/luz</item>
-        <item>@string/gas</item>
-        <item>@string/condominio</item>
-        <item>@string/gasolina</item>
-        <item>@string/feiraDeVerduras</item>
-        <item>@string/aluguel</item>
-    </string-array>
-
-    <string-array name="valor">
-        <item>12.50</item>
-        <item>45.99</item>
-        <item>100.00</item>
-        <item>88.75</item>
-        <item>103.14</item>
-        <item>79.00</item>
-        <item>120.00</item>
-        <item>168.50</item>
-        <item>43.90</item>
-        <item>800.00</item>
-    </string-array>
-
-    <integer-array name="tipoGasto">
-        <item>2</item>
-        <item>1</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>0</item>
-        <item>2</item>
-        <item>2</item>
-        <item>1</item>
-    </integer-array>
-
-    <integer-array name="relevante">
-        <item>0</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-        <item>1</item>
-    </integer-array>
-
-    <string-array name="tipoPagamento">
-        <item>Dinheiro</item>
-        <item>Cŕedito</item>
-        <item>Débito</item>
-        <item>Débito</item>
-        <item>Débito</item>
-        <item>Débito</item>
-        <item>Débito</item>
-        <item>Crédito</item>
-        <item>Dinheiro</item>
-        <item>Débito</item>
     </string-array>
 </resources>

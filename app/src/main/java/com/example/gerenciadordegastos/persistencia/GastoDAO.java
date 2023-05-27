@@ -27,9 +27,12 @@ public interface GastoDAO {
     @Update
     void update(Gasto gasto);
 
-    @Query("SELECT * FROM gasto WHERE id = :id")
+    @Query("SELECT * FROM gastos WHERE id = :id")
     Gasto queryForId(long id);
 
-    @Query("SELECT * FROM gasto ORDER BY nome ASC")
+    @Query("SELECT * FROM gastos ORDER BY nome ASC")
     List<Gasto> queryAll();
+
+    @Query("SELECT * FROM gastos WHERE tipoId = :id ORDER BY nome ASC")
+    List<Gasto> queryForTipoId(long id);
 }

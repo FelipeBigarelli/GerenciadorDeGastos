@@ -32,16 +32,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <string name="crepe">Crepe</string>
-    <string name="mercado">Mercado</string>
-    <string name="internet">Internet</string>
-    <string name="agua">Água</string>
-    <string name="luz">Luz</string>
-    <string name="gas">Gás</string>
-    <string name="condominio">Condomínio</string>
-    <string name="gasolina">Gasolina</string>
-    <string name="feiraDeVerduras">Feira de Verduras</string>
-    <string name="aluguel">Aluguel</string>
     <string name="textViewNomeGasto">Expense:</string>
     <string name="textViewValor">Value:</string>
     <string name="textViewTipoGasto">Expense Type</string>
@@ -75,4 +65,25 @@
     <string name="menuItemTrocarTema">Change Theme</string>
     <string name="noTypeSelected">No type selected</string>
     <string name="confirmRemoveExpend">Confirm exclusion?</string>
+
+    <string name="contaCasa">House Bill</string>
+    <string name="mercado">Marketplace</string>
+    <string name="textViewDescricaoTipoGasto">Descrição</string>
+    <string name="mudarTipoGasto">Change Expense Type</string>
+    <string name="novoTipoGasto">New Expense Type</string>
+    <string name="aviso">Notice</string>
+    <string name="ok">Ok</string>
+    <string name="confirmar">Confirm</string>
+    <string name="sim">Yes</string>
+    <string name="nao">No</string>
+    <string name="descricaoVazia">Empty description</string>
+    <string name="descricao_usada">Description already in use</string>
+    <string name="menuItemSalvar">Save</string>
+    <string name="menuItemCancelar">Cancel</string>
+
+    <string name="types">Types</string>
+    <string name="tipo_usado">Type already in use</string>
+    <string name="deseja_realmente_apagar">Delete type?</string>
+    <string name="menuItemAbrir">menuItemAbrir</string>
+
 </resources>

@@ -34,16 +34,6 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <string name="crepe">Crepe</string>
-    <string name="mercado">Mercado</string>
-    <string name="internet">Internet</string>
-    <string name="agua">Água</string>
-    <string name="luz">Luz</string>
-    <string name="gas">Gás</string>
-    <string name="condominio">Condomínio</string>
-    <string name="gasolina">Gasolina</string>
-    <string name="feiraDeVerduras">Feira de Verduras</string>
-    <string name="aluguel">Aluguel</string>
     <string name="textViewNomeGasto">Gasto:</string>
     <string name="textViewValor">Valor:</string>
     <string name="textViewTipoGasto">Tipo de Gasto</string>
@@ -76,4 +66,7 @@
     <string name="menuItemTrocarTema">Trocar Tema</string>
     <string name="noTypeSelected">Nenhum tipo selecionado</string>
     <string name="confirmRemoveExpend">Confirmar exclusão?</string>
+
+    <string name="contaCasa">Conta de Casa</string>
+    <string name="mercado">Mercado</string>
 </resources>

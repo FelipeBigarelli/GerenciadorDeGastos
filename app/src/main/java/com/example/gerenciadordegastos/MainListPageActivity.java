@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.ActionMode;
 import android.view.ContextMenu;
@@ -18,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.gerenciadordegastos.modelo.Gasto;
@@ -34,6 +36,8 @@ public class MainListPageActivity extends AppCompatActivity {
     private ListView listViewGastos;
     private GastoAdapter listaGastoAdapter;
     private ArrayList<Gasto> gastos;
+    private List<Gasto>         lista;
+
 
     private ActionMode actionMode;
     private int posicaoSelecionada = -1;
@@ -189,14 +193,23 @@ public class MainListPageActivity extends AppCompatActivity {
 
         listViewGastos.setAdapter(listaGastoAdapter);*/
 
-        GastosDatabase database = GastosDatabase.getDatabase(this);
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                GastosDatabase database = GastosDatabase.getDatabase(MainListPageActivity.this);
 
-        List<Gasto> lista = database.gastoDAO().queryAll();
+                lista = database.gastoDAO().queryAll();
 
-        listaGastoAdapter = new GastoAdapter(this, lista);
+                MainListPageActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        listaGastoAdapter = new GastoAdapter(MainListPageActivity.this, lista);
 
-        listViewGastos.setAdapter(listaGastoAdapter);
-
+                        listViewGastos.setAdapter(listaGastoAdapter);
+                    }
+                });
+            }
+        });
     }
 
     private void excluirGasto(final Gasto gasto) {
