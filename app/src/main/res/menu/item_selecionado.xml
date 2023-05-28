@@ -10,6 +10,6 @@
     <item
         android:id="@+id/menuItemApagar"
         android:icon="@android:drawable/ic_menu_delete"
-        android:title="menuItemApagar"
+        android:title="@string/menuItemApagar"
         app:showAsAction="ifRoom|withText" />
 </menu>

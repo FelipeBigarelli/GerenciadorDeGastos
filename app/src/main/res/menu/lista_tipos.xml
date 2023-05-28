@@ -5,6 +5,6 @@
     <item
         android:id="@+id/menuItemNovoTipo"
         android:icon="@android:drawable/ic_input_add"
-        android:title="menuItemNovoTipo"
+        android:title="@string/menuItemNovoTipo"
         app:showAsAction="ifRoom|withText" />
 </menu>

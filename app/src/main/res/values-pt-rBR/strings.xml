@@ -51,7 +51,7 @@
     <string name="buttonCancelar">Cancelar</string>
     <string name="menuItemAdicionar">Adicionar</string>
     <string name="menuItemSobre">Sobre</string>
-    <string name="menuItemSalvarGasto">Salvar</string>
+    <string name="menuItemSalvarGasto">Salvar Gasto</string>
     <string name="menuItemLimparCampos">Limpar</string>
     <string name="menuItemEditar">Editar</string>
     <string name="menuItemExcluir">Excluir</string>
@@ -69,4 +69,36 @@
 
     <string name="contaCasa">Conta de Casa</string>
     <string name="mercado">Mercado</string>
+
+    <string name="textViewDescricaoTipoGasto">Descrição</string>
+    <string name="mudarTipoGasto">Mudar tipo de gasto</string>
+    <string name="novoTipoGasto">Novo Tipo de Gasto</string>
+    <string name="aviso">Aviso</string>
+    <string name="ok">Ok</string>
+    <string name="confirmar">Confirmar</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="descricaoVazia">Descrição vazia</string>
+    <string name="descricao_usada">Descrição já está em uso</string>
+    <string name="menuItemSalvar">Salvar</string>
+    <string name="menuItemCancelar">Cancelar</string>
+
+    <string name="types">Tipos</string>
+    <string name="tipo_usado">Tipo já criado</string>
+    <string name="deseja_realmente_apagar">Deletar gasto?</string>
+    <string name="textViewSelecionarTipoGasto">Selecione um Tipo de Gasto</string>
+    <string name="radioButtonDinheiro">Dinheiro</string>
+    <string name="radioButtonCredito">Crédito</string>
+    <string name="radioButtonDebito">Débito</string>
+
+    <string name="holderDinheiro">Dinheiro</string>
+    <string name="holderCredito">Crédito</string>
+    <string name="holderDebito">Débito</string>
+
+    <string name="menuItemTipos">Tipos</string>
+    <string name="menuItemApagar">Deletar</string>
+    <string name="menuItemAbrir">Abrir</string>
+    <string name="menuItemNovoTipo">Adicionar</string>
+    <string name="menuItemLimparCampoTipo">Limpar</string>
+
 </resources>

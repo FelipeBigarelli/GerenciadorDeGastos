@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class TipoGastoActivity extends AppCompatActivity {
     public static final int    NOVO    = 1;
     public static final int    ALTERAR = 2;
 
-    private EditText editTexDescricao;
+    private EditText editTextDescricao;
 
     private int  modo;
     private TiposGasto tipo;
@@ -57,7 +58,7 @@ public class TipoGastoActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        editTexDescricao = findViewById(R.id.editTextDescricaoTipoGasto);
+        editTextDescricao = findViewById(R.id.editTextDescricaoTipoGasto);
 
         Intent intent = getIntent();
         final Bundle bundle = intent.getExtras();
@@ -85,7 +86,7 @@ public class TipoGastoActivity extends AppCompatActivity {
                     TipoGastoActivity.this.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            editTexDescricao.setText(tipo.getDescricao());
+                            editTextDescricao.setText(tipo.getDescricao());
                         }
                     });
                 }
@@ -99,11 +100,19 @@ public class TipoGastoActivity extends AppCompatActivity {
         }
     }
 
+    public void limparCampos() {
+        editTextDescricao.setText(null);
+
+        editTextDescricao.requestFocus();
+
+        Toast.makeText(this, R.string.limparCamposNovoGasto, Toast.LENGTH_SHORT).show();
+    }
+
     private void salvar(){
 
         final String descricao  = UtilsGUI.validaCampoTexto(
                 this,
-                editTexDescricao,
+                editTextDescricao,
                 R.string.descricaoVazia
         );
 
@@ -171,6 +180,11 @@ public class TipoGastoActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        cancelar();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.edicao_detalhes, menu);
         return true;
@@ -184,9 +198,14 @@ public class TipoGastoActivity extends AppCompatActivity {
             case R.id.menuItemSalvar:
                 salvar();
                 return true;
-            case R.id.menuItemCancelar:
+            case R.id.menuItemLimparCampoTipo:
+                limparCampos();
+                return true;
+
+            case android.R.id.home:
                 cancelar();
                 return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -24,6 +24,7 @@ import android.widget.ListView;
 
 import com.example.gerenciadordegastos.modelo.Gasto;
 import com.example.gerenciadordegastos.persistencia.GastosDatabase;
+import com.example.gerenciadordegastos.utils.UtilsGUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -212,8 +213,8 @@ public class MainListPageActivity extends AppCompatActivity {
         });
     }
 
-    private void excluirGasto(final Gasto gasto) {
-        /*String mensagem = R.string.confirmRemoveExpend + "\n" + gasto.getNome();
+    /*private void excluirGasto(final Gasto gasto) {
+        String mensagem = R.string.confirmRemoveExpend + "\n" + gasto.getNome();
 
         DialogInterface.OnClickListener listener =
                 new DialogInterface.OnClickListener() {
@@ -234,17 +235,57 @@ public class MainListPageActivity extends AppCompatActivity {
                                 break;
                         }
                     }
-                };*/
+                };
 
-        /*gastos.remove(posicaoSelecionada);*/
-
-        GastosDatabase database = GastosDatabase.getDatabase(MainListPageActivity.this);
-
-        database.gastoDAO().delete(gasto);
+        UtilsGUI.confirmaAcao(this, mensagem, listener);
 
         listaGastoAdapter.remove(gasto);
 
         listaGastoAdapter.notifyDataSetChanged();
+    }*/
+
+    private void excluirGasto(final Gasto gasto){
+
+        String mensagem = getString(R.string.deseja_realmente_apagar)
+                + "\n" + gasto.getNome();
+
+        DialogInterface.OnClickListener listener =
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        switch(which){
+                            case DialogInterface.BUTTON_POSITIVE:
+
+                                AsyncTask.execute(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        GastosDatabase database =
+                                                GastosDatabase.getDatabase(MainListPageActivity.this);
+
+                                        database.gastoDAO().delete(gasto);
+
+                                        MainListPageActivity.this.runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                listaGastoAdapter.remove(gasto);
+                                                listaGastoAdapter.notifyDataSetChanged();
+                                            }
+                                        });
+                                    }
+                                });
+
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+
+                                break;
+                        }
+                    }
+                };
+
+        UtilsGUI.confirmaAcao(this, mensagem, listener);
     }
 
     /*private void alterarGasto() {
@@ -323,6 +364,9 @@ public class MainListPageActivity extends AppCompatActivity {
                 salvarPreferenciaTema(themeChecked);
 
                 return true;
+
+            case R.id.menuItemTipos:
+                TiposGastoActivity.abrir(this);
 
             default:
                 return super.onOptionsItemSelected(item);

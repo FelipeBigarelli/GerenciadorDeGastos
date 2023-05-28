@@ -20,6 +20,12 @@
             android:name=".SobreActivity"
             android:exported="false" />
         <activity
+            android:name=".TiposGastoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TipoGastoActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainListPageActivity"
             android:exported="true">
             <intent-filter>

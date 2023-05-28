@@ -11,6 +11,9 @@
         android:id="@+id/menuItemSobre"
         android:title="@string/menuItemSobre" />
     <item
+        android:id="@+id/menuItemTipos"
+        android:title="@string/menuItemTipos" />
+    <item
         android:id="@+id/menuItemTrocarTema"
         android:checkable="true"
         android:icon="@drawable/dark_theme"

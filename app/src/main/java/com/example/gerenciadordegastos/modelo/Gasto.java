@@ -18,9 +18,9 @@ import java.math.BigDecimal;
                                   parentColumns = "id",
                                   childColumns = "tipoId"))
 public class Gasto {
-    public static final int HOUSE = 1;
-    public static final int MARKETPLACE = 2;
-    public static final int OTHERS = 3;
+    public static final int DINHEIRO = 1;
+    public static final int CREDITO = 2;
+    public static final int DEBITO = 3;
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -31,14 +31,12 @@ public class Gasto {
     private Float valor;
 
     //private TipoGasto tipoGasto;
-    private int tipoGasto;
+    private int tipoPagamento;
 
     @ColumnInfo(index = true)
     private int tipoId;
 
     private Boolean relevante;
-
-    private String tipoPagamento;
 
     public Gasto (String nome) {
         setNome(nome);
@@ -81,9 +79,9 @@ public class Gasto {
         this.tipoId = tipoId;
     }
 
-    public void setTipoGasto(int tipoGasto) {
+    /*public void setTipoGasto(int tipoGasto) {
         this.tipoGasto = tipoGasto;
-    }
+    }*/
 
     public Boolean isRelevante() {
         return relevante;
@@ -93,11 +91,11 @@ public class Gasto {
         this.relevante = relevante;
     }
 
-    public String getTipoPagamento() {
+    public int getTipoPagamento() {
         return tipoPagamento;
     }
 
-    public void setTipoPagamento(String tipoPagamento) {
+    public void setTipoPagamento(int tipoPagamento) {
         this.tipoPagamento = tipoPagamento;
     }
 

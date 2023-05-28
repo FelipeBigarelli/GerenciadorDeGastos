@@ -184,6 +184,16 @@ public class TiposGastoActivity extends AppCompatActivity {
         return true;
     }
 
+    private void cancelar(){
+        setResult(Activity.RESULT_CANCELED);
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancelar();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -192,6 +202,11 @@ public class TiposGastoActivity extends AppCompatActivity {
             case R.id.menuItemNovoTipo:
                 TipoGastoActivity.novo(this, REQUEST_NOVO_TIPO);
                 return true;
+
+            case android.R.id.home:
+                cancelar();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

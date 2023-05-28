@@ -24,7 +24,7 @@ public interface TiposGastoDAO {
     @Query("SELECT * FROM tipos_gasto WHERE id = :id")
     TiposGasto queryForId(long id);
 
-    @Query("SELECT * FROM tipos_gasto ORDER BY descricao ASC")
+    @Query("SELECT * FROM tipos_gasto ORDER BY id")
     List<TiposGasto> queryAll();
 
     @Query("SELECT * FROM tipos_gasto WHERE descricao = :descricao ORDER BY descricao ASC")

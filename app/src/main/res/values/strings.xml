@@ -47,13 +47,7 @@
     <string name="buttonSobre">About</string>
     <string name="nao_cadastrado">Not registered</string>
     <string name="buttonCancelar">Cancel</string>
-    <string name="menuItemAdicionar">Add New</string>
-    <string name="menuItemSobre">About</string>
-    <string name="menuItemSalvarGasto">Save</string>
-    <string name="menuItemLimparCampos">Clear</string>
-    <string name="menuItemEditar">Edit</string>
-    <string name="menuItemExcluir">Delete</string>
-    <string name="menuItemVoltarSobre">Go Back</string>
+
     <string name="inserirNovoGasto">Insert new Expense</string>
     <string name="setTitleNovoGasto">New Expense</string>
     <string name="setTitleAlterarGasto">Change Expense</string>
@@ -62,13 +56,23 @@
     <string name="holderTipoGastoOutros">Others</string>
     <string name="holderRelevanteSim">Yes</string>
     <string name="holderRelevanteNao">No</string>
-    <string name="menuItemTrocarTema">Change Theme</string>
     <string name="noTypeSelected">No type selected</string>
     <string name="confirmRemoveExpend">Confirm exclusion?</string>
 
+    <string name="menuItemAdicionar">Add New</string>
+    <string name="menuItemSobre">About</string>
+    <string name="menuItemSalvarGasto">Save Expend</string>
+    <string name="menuItemLimparCampos">Clear</string>
+    <string name="menuItemEditar">Edit</string>
+    <string name="menuItemExcluir">Delete</string>
+    <string name="menuItemVoltarSobre">Go Back</string>
+    <string name="menuItemTrocarTema">Change Theme</string>
+    <string name="menuItemSalvar">Save</string>
+    <string name="menuItemCancelar">Cancel</string>
+
     <string name="contaCasa">House Bill</string>
     <string name="mercado">Marketplace</string>
-    <string name="textViewDescricaoTipoGasto">Descrição</string>
+    <string name="textViewDescricaoTipoGasto">Description</string>
     <string name="mudarTipoGasto">Change Expense Type</string>
     <string name="novoTipoGasto">New Expense Type</string>
     <string name="aviso">Notice</string>
@@ -78,12 +82,24 @@
     <string name="nao">No</string>
     <string name="descricaoVazia">Empty description</string>
     <string name="descricao_usada">Description already in use</string>
-    <string name="menuItemSalvar">Save</string>
-    <string name="menuItemCancelar">Cancel</string>
+
 
     <string name="types">Types</string>
-    <string name="tipo_usado">Type already in use</string>
-    <string name="deseja_realmente_apagar">Delete type?</string>
-    <string name="menuItemAbrir">menuItemAbrir</string>
+    <string name="tipo_usado">Type in use</string>
+    <string name="deseja_realmente_apagar">Delete Expense?</string>
+    <string name="textViewSelecionarTipoGasto">Select an Expense Type</string>
+    <string name="radioButtonDinheiro">Money</string>
+    <string name="radioButtonCredito">Credit</string>
+    <string name="radioButtonDebito">Debit</string>
+
+    <string name="holderDinheiro">Money</string>
+    <string name="holderCredito">Credit</string>
+    <string name="holderDebito">Debit</string>
+
+    <string name="menuItemTipos">Types</string>
+    <string name="menuItemApagar">Delete</string>
+    <string name="menuItemAbrir">Open</string>
+    <string name="menuItemNovoTipo">Add</string>
+    <string name="menuItemLimparCampoTipo">Clear</string>
 
 </resources>

@@ -83,17 +83,7 @@ public class GastoAdapter extends BaseAdapter {
 
         holder.textViewValueValorGasto.setText(valorGastoFormatado);
 
-        switch (gastos.get(i).getTipoGasto()) {
-            case 1:
-                holder.textViewValueTipoGasto.setText(R.string.holderTipoGastoCasa);
-                break;
-            case 2:
-                holder.textViewValueTipoGasto.setText(R.string.holderTipoGastoMercado);
-                break;
-            case 3:
-                holder.textViewValueTipoGasto.setText(R.string.holderTipoGastoOutros);
-                break;
-        }
+        holder.textViewValueTipoGasto.setText(Integer.toString(gastos.get(i).getTipoId()));
 
         if(gastos.get(i).isRelevante()) {
             holder.textViewValueRelevante.setText(R.string.holderRelevanteSim);
@@ -101,7 +91,17 @@ public class GastoAdapter extends BaseAdapter {
             holder.textViewValueRelevante.setText(R.string.holderRelevanteNao);
         }
 
-        holder.textViewValueTipoPagamento.setText(gastos.get(i).getTipoPagamento());
+        switch (gastos.get(i).getTipoPagamento()) {
+            case 1:
+                holder.textViewValueTipoPagamento.setText(R.string.holderDinheiro);
+                break;
+            case 2:
+                holder.textViewValueTipoPagamento.setText(R.string.holderCredito);
+                break;
+            case 3:
+                holder.textViewValueTipoPagamento.setText(R.string.holderDebito);
+                break;
+        }
 
         return view;
     }

@@ -8,6 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
 
+        android:id="@+id/spinnerTiposGasto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -47,7 +48,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
+            android:layout_marginTop="32dp"
             android:text="@string/valorNovoGasto"
             app:autoSizeTextType="none"
             app:layout_constraintStart_toStartOf="@+id/editTextNomeGasto"
@@ -64,36 +65,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-        <RadioGroup
-            android:id="@+id/radioGroupTipoGasto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:drawingCacheQuality="auto"
-            android:onClick="mostrarGastoCompleto"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="@+id/editTextNomeGasto"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal">
-
-            <RadioButton
-                android:id="@+id/radioButtonContasCasa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/radioButtonContasCasa" />
-
-            <RadioButton
-                android:id="@+id/radioButtonMercado"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/radioButtonMercado" />
-
-            <RadioButton
-                android:id="@+id/radioButtonOutros"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/radioButtonOutros" />
-        </RadioGroup>
-
         <CheckBox
             android:id="@+id/checkBoxGastoRelevante"
             android:layout_width="wrap_content"
@@ -101,17 +72,7 @@
             android:layout_marginTop="32dp"
             android:text="@string/checkBoxGastoRelevante"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/radioGroupTipoGasto" />
-
-        <Spinner
-            android:id="@+id/spinnerSelecionarPagamento"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/spinnerTextoCreditoDebito"
-            app:layout_constraintTop_toBottomOf="@+id/spinnerTextoCreditoDebito" />
+            app:layout_constraintTop_toBottomOf="@+id/spinnerSelecionarTiposGastos" />
 
         <TextView
             android:id="@+id/spinnerTextoCreditoDebito"
@@ -121,6 +82,53 @@
             android:text="@string/spinnerTextoTipoPagamento"
             app:layout_constraintStart_toStartOf="@+id/checkBoxGastoRelevante"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxGastoRelevante" />
+
+        <Spinner
+            android:id="@+id/spinnerSelecionarTiposGastos"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/textViewSelecionarTipoGasto"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSelecionarTipoGasto" />
+
+        <TextView
+            android:id="@+id/textViewSelecionarTipoGasto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/textViewSelecionarTipoGasto"
+            app:layout_constraintStart_toStartOf="@+id/editTextNumberDecimal"
+            app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal" />
+
+        <RadioGroup
+            android:id="@+id/radioGroupTiposPagamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/spinnerTextoCreditoDebito"
+            app:layout_constraintTop_toBottomOf="@+id/spinnerTextoCreditoDebito">
+
+            <RadioButton
+                android:id="@+id/radioButtonDinheiro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonDinheiro" />
+
+            <RadioButton
+                android:id="@+id/radioButtonCredito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonCredito" />
+
+            <RadioButton
+                android:id="@+id/radioButtonDebito"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/radioButtonDebito" />
+        </RadioGroup>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

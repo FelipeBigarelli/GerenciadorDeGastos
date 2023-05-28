@@ -38,20 +38,18 @@ public class NewGastoActivity extends AppCompatActivity {
     private int modo;
     private String nomeOriginal;
     private Float valorOriginal;
-    //private TipoGasto tipoGastoOriginal;
+    /*private TipoGasto tipoGastoOriginal;
     private Boolean relevanteOriginal;
-    private String tipoPagamentoOriginal;
+    private String tipoPagamentoOriginal;*/
 
 
     private EditText editTextNomeGasto, editTextValorGasto;
-    private RadioGroup radioGroupTipoGasto;
+    private RadioGroup radioGroupTipoPagamento;
     private CheckBox cbGastoRelevante;
-    private Spinner spinnerTipoPagamento;
-    private Spinner    spinnerTipo;
-
+    private Spinner spinnerTiposGasto;
+    private List<TiposGasto> listaTipos;
 
     private Gasto gasto;
-    private List<TiposGasto> listaTipos;
 
     public static void novoGasto(Activity activity, int requestCode){
 
@@ -68,7 +66,7 @@ public class NewGastoActivity extends AppCompatActivity {
         intent.putExtra(MODO, ALTERAR);
         intent.putExtra(NOME, gasto.getNome());
         intent.putExtra(VALOR, gasto.getValor());
-        intent.putExtra(TIPO_GASTO, gasto.getTipoGasto());
+        intent.putExtra(TIPO_GASTO, gasto.getTipoId());
         intent.putExtra(RELEVANTE, gasto.isRelevante());
         intent.putExtra(TIPO_PAGAMENTO, gasto.getTipoPagamento());
         intent.putExtra(ID, gasto.getId());
@@ -87,15 +85,14 @@ public class NewGastoActivity extends AppCompatActivity {
 
         editTextNomeGasto = findViewById(R.id.editTextNomeGasto);
         editTextValorGasto = findViewById(R.id.editTextNumberDecimal);
-        radioGroupTipoGasto = findViewById(R.id.radioGroupTipoGasto);
+        radioGroupTipoPagamento = findViewById(R.id.radioGroupTiposPagamento);
+        spinnerTiposGasto = findViewById(R.id.spinnerSelecionarTiposGastos);
         cbGastoRelevante = findViewById(R.id.checkBoxGastoRelevante);
-        spinnerTipoPagamento = findViewById(R.id.spinnerSelecionarPagamento);
-
-
-        popularSpinnerTipoPagamento();
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
+
+        carregaTipos();
 
         if(bundle != null) {
             modo = bundle.getInt(MODO, NOVO);
@@ -120,54 +117,75 @@ public class NewGastoActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 editTextNomeGasto.setText(gasto.getNome());
-                                editTextValorGasto.setText(VALOR);
+                                editTextValorGasto.setText(String.valueOf(gasto.getValor()));
 
                                 int posicao = posicaoTipo(gasto.getTipoId());
-                                spinnerTipo.setSelection(posicao);
+                                spinnerTiposGasto.setSelection(posicao);
+
+                                int tipoPagamento = gasto.getTipoPagamento();
+
+                                RadioButton button;
+
+                                switch(tipoPagamento) {
+                                    case Gasto.DINHEIRO:
+                                        button = findViewById(R.id.radioButtonDinheiro);
+                                        button.setChecked(true);
+                                        break;
+
+                                    case Gasto.CREDITO:
+                                        button = findViewById(R.id.radioButtonCredito);
+                                        button.setChecked(true);
+                                        break;
+
+                                    case Gasto.DEBITO:
+                                        button = findViewById(R.id.radioButtonDebito);
+                                        button.setChecked(true);
+                                        break;
+                                }
+
+                                boolean relevante = bundle.getBoolean(RELEVANTE);
+                                cbGastoRelevante.setChecked(relevante);
                             }
                         });
                     }
                 });
 
-                nomeOriginal = bundle.getString(NOME);
+                /*nomeOriginal = bundle.getString(NOME);
                 editTextNomeGasto.setText(nomeOriginal);
 
                 valorOriginal = bundle.getFloat(VALOR);
                 editTextValorGasto.setText(String.valueOf(valorOriginal));
 
-                int tipoGasto = bundle.getInt(TIPO_GASTO);
+                int tipoPagamento = radioGroupTipoPagamento.getCheckedRadioButtonId();
 
                 RadioButton button;
 
-                switch(tipoGasto) {
-                    case Gasto.HOUSE:
-                        button = findViewById(R.id.radioButtonContasCasa);
+                switch(tipoPagamento) {
+                    case Gasto.DINHEIRO:
+                        button = findViewById(R.id.radioButtonDinheiro);
                         button.setChecked(true);
                         break;
 
-                    case Gasto.MARKETPLACE:
-                        button = findViewById(R.id.radioButtonMercado);
+                    case Gasto.CREDITO:
+                        button = findViewById(R.id.radioButtonCredito);
                         button.setChecked(true);
                         break;
 
-                    case Gasto.OTHERS:
-                        button = findViewById(R.id.radioButtonOutros);
+                    case Gasto.DEBITO:
+                        button = findViewById(R.id.radioButtonDebito);
                         button.setChecked(true);
                         break;
-                }
+                }*/
 
-                boolean relevante = bundle.getBoolean(RELEVANTE);
-                cbGastoRelevante.setChecked(relevante);
+                /*String tiposGasto = bundle.getString((TIPO_GASTO));
+                for(int position = 0; 0 < spinnerTiposGasto.getAdapter().getCount(); position++) {
+                    String valor = (String) spinnerTiposGasto.getItemAtPosition(position);
 
-                String tipoPagamento = bundle.getString((TIPO_PAGAMENTO));
-                for(int position = 0; 0 < spinnerTipoPagamento.getAdapter().getCount(); position++) {
-                    String valor = (String) spinnerTipoPagamento.getItemAtPosition(position);
-
-                    if(valor.equals(tipoPagamento)){
-                        spinnerTipoPagamento.setSelection(position);
+                    if(valor.equals(tiposGasto)){
+                        spinnerTiposGasto.setSelection(position);
                         break;
                     }
-                }
+                }*/
             }
         }
     }
@@ -186,19 +204,40 @@ public class NewGastoActivity extends AppCompatActivity {
         return -1;
     }
 
+    private void carregaTipos(){
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                GastosDatabase database = GastosDatabase.getDatabase(NewGastoActivity.this);
+
+                listaTipos = database.tiposGastoDAO().queryAll();
+
+                NewGastoActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        ArrayAdapter<TiposGasto> spinnerAdapter =
+                                new ArrayAdapter<>(NewGastoActivity.this,
+                                        android.R.layout.simple_list_item_1,
+                                        listaTipos);
+
+                        spinnerTiposGasto.setAdapter(spinnerAdapter);
+                    }
+                });
+            }
+        });
+    }
+
     public void salvarGasto() {
         String nomeGasto = editTextNomeGasto.getText().toString();
         String valorGasto = editTextValorGasto.getText().toString();
-        //TipoGasto tipoSelecionado = null;
+        /*TipoGasto tipoSelecionado = null;
+        String spinnerTiposGastoSelecionado = (String) spinnerTiposGasto.getSelectedItem();
         String checkBoxMessage = "";
         String spinnerTipoSelecionado = (String) spinnerTipoPagamento.getSelectedItem();
-        String spinnerMessage;
+        String spinnerMessage;*/
 
-        if(spinnerTipoSelecionado != null) {
-            spinnerMessage = getString(R.string.tipoPagamentoSelecionado);
-        } else {
-            spinnerMessage = getString(R.string.nenhumPagamentoSelecionado);
-        }
+
 
         if(nomeGasto == null || nomeGasto.trim().isEmpty()) {
             Toast.makeText(this, R.string.erroNomeGasto, Toast.LENGTH_SHORT).show();
@@ -214,30 +253,30 @@ public class NewGastoActivity extends AppCompatActivity {
             return;
         }
 
-        int tipo = -1;
+        int tipoPagamento = -1;
 
-        switch (radioGroupTipoGasto.getCheckedRadioButtonId()) {
-            case R.id.radioButtonContasCasa:
-                tipo = Gasto.HOUSE;
+        switch (radioGroupTipoPagamento.getCheckedRadioButtonId()) {
+            case R.id.radioButtonDinheiro:
+                tipoPagamento = Gasto.DINHEIRO;
                 break;
 
-            case R.id.radioButtonMercado:
-                tipo = Gasto.MARKETPLACE;
+            case R.id.radioButtonCredito:
+                tipoPagamento = Gasto.CREDITO;
                 break;
 
-            case R.id.radioButtonOutros:
-                tipo = Gasto.OTHERS;
+            case R.id.radioButtonDebito:
+                tipoPagamento = Gasto.DEBITO;
                 break;
 
             default:
-                tipo = -1;
+                tipoPagamento = -1;
         }
 
-        if(tipo == -1) {
-            Toast.makeText(this, R.string.noTypeSelected, Toast.LENGTH_SHORT).show();
+        TiposGasto tipo = (TiposGasto) spinnerTiposGasto.getSelectedItem();
+        /*if (tipo != null){
+            gasto.setTipoId(tipo.getId());
+        }*/
 
-            return;
-        }
 
         /*if (cbGastoRelevante.isChecked()) {
             checkBoxMessage += getString(R.string.gastoRelevante);
@@ -260,13 +299,20 @@ public class NewGastoActivity extends AppCompatActivity {
         intent.putExtra(TIPO_PAGAMENTO, spinnerTipoSelecionado);*/
 
         boolean isRelevante = cbGastoRelevante.isChecked();
-        String tipoPagamento = (String) spinnerTipoPagamento.getSelectedItem();
 
-        GastosDatabase database = GastosDatabase.getDatabase(this);
+        //String tipoPagamento = (String) spinnerTipoPagamento.getSelectedItem();
+
+        //GastosDatabase database = GastosDatabase.getDatabase(this);
+
+        /*if(spinnerTiposGasto != null) {
+            spinnerMessage = getString(R.string.tipoPagamentoSelecionado);
+        } else {
+            spinnerMessage = getString(R.string.nenhumPagamentoSelecionado);
+        }*/
 
         gasto.setNome(nomeGasto);
         gasto.setValor(Float.valueOf(valorGasto));
-        gasto.setTipoGasto(tipo);
+        gasto.setTipoId(tipo.getId());
         gasto.setRelevante(isRelevante);
         gasto.setTipoPagamento(tipoPagamento);
 
@@ -290,7 +336,7 @@ public class NewGastoActivity extends AppCompatActivity {
         });
     }
 
-    private void popularSpinnerTipoPagamento() {
+    /*private void popularSpinnerTipoPagamento() {
         ArrayList<String> list = new ArrayList<>();
 
         list.add(getString(R.string.spinnerDinheiro));
@@ -304,12 +350,28 @@ public class NewGastoActivity extends AppCompatActivity {
                         list
                 );
         spinnerTipoPagamento.setAdapter(adapter);
-    }
+    }*/
+
+    /*private void popularSpinnerTiposGasto() {
+        ArrayList<String> list = new ArrayList<>();
+
+        list.add(R.string.);
+        list.add(getString(R.string.spinnerCredito));
+        list.add(getString(R.string.spinnerDebito));
+
+        ArrayAdapter<String> adapter =
+                new ArrayAdapter<>(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        list
+                );
+        spinnerTipoPagamento.setAdapter(adapter);
+    }*/
 
     public void limparCampos() {
         editTextNomeGasto.setText(null);
         editTextValorGasto.setText(null);
-        radioGroupTipoGasto.clearCheck();
+        radioGroupTipoPagamento.clearCheck();
         cbGastoRelevante.setChecked(false);
 
 
@@ -400,6 +462,14 @@ public class NewGastoActivity extends AppCompatActivity {
 
     }*/
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.novo_gasto_opcoes, menu);
+
+        return true;
+    }
+
     private void cancelar(){
         setResult(Activity.RESULT_CANCELED);
         finish();
@@ -408,13 +478,6 @@ public class NewGastoActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         cancelar();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.novo_gasto_opcoes, menu);
-
-        return true;
     }
 
     @Override
