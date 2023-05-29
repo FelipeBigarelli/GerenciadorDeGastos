@@ -19,4 +19,7 @@
         android:icon="@drawable/dark_theme"
         android:title="@string/menuItemTrocarTema"
         app:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/menuItemMetas"
+        android:title="@string/menuItemMetas" />
 </menu>

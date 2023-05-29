@@ -101,5 +101,18 @@
     <string name="menuItemAbrir">Open</string>
     <string name="menuItemNovoTipo">Add</string>
     <string name="menuItemLimparCampoTipo">Clear</string>
+    <string name="textViewValorNovaMeta">Enter your Income</string>
+
+    <string name="textViewDataNovaMeta">Date Goal</string>
+    <string name="alterar_meta">Change Goal</string>
+    <string name="meta">Goal</string>
+
+    <string name="deseja_realmente_apagar_meta">Delete Goal?</string>
+    <string name="menuItemAdicionarMeta">Add Goal</string>
+    <string name="nova_meta">New Goal</string>
+    <string name="meta_vazia">Empty Goal</string>
+    <string name="data_meta_vazia">Empty Goal Date</string>
+    <string name="menuItemMetas">Goal</string>
+
 
 </resources>

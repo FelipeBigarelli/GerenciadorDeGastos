@@ -367,6 +367,11 @@ public class MainListPageActivity extends AppCompatActivity {
 
             case R.id.menuItemTipos:
                 TiposGastoActivity.abrir(this);
+                return true;
+
+            case R.id.menuItemMetas:
+                MetasActivity.metas(this);
+                return true;
 
             default:
                 return super.onOptionsItemSelected(item);

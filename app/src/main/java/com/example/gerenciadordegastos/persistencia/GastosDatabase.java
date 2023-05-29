@@ -9,20 +9,26 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.gerenciadordegastos.R;
 import com.example.gerenciadordegastos.modelo.Gasto;
+import com.example.gerenciadordegastos.modelo.Meta;
 import com.example.gerenciadordegastos.modelo.TiposGasto;
 
+import java.util.Date;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Gasto.class, TiposGasto.class}, version = 1, exportSchema = false)
+@Database(entities = {Gasto.class, TiposGasto.class, Meta.class}, version = 1, exportSchema = false)
+@TypeConverters({Converters.class})
 public abstract class GastosDatabase extends RoomDatabase {
 
     public abstract GastoDAO gastoDAO();
 
     public abstract TiposGastoDAO tiposGastoDAO();
+
+    public abstract MetaDAO metaDAO();
 
     private static GastosDatabase instance;
 
@@ -43,6 +49,7 @@ public abstract class GastosDatabase extends RoomDatabase {
                                 @Override
                                 public void run() {
                                     carregaTiposIniciais(context);
+                                    carregaMetaInicial(context);
                                 }
                             });
                         }
@@ -65,6 +72,20 @@ public abstract class GastosDatabase extends RoomDatabase {
             TiposGasto tipoGasto = new TiposGasto(descricao);
 
             instance.tiposGastoDAO().insert(tipoGasto);
+        }
+    }
+
+    private static void carregaMetaInicial(final Context context){
+
+        String[] metaInicial = context.getResources().getStringArray(R.array.meta_inicial);
+
+        for (String valorMeta : metaInicial) {
+
+            Meta newMeta = new Meta(valorMeta);
+
+            newMeta.setDataMeta(new Date());
+
+            instance.metaDAO().insert(newMeta);
         }
     }
 }

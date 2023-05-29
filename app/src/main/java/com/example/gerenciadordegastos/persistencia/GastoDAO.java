@@ -35,4 +35,7 @@ public interface GastoDAO {
 
     @Query("SELECT * FROM gastos WHERE tipoId = :id ORDER BY nome ASC")
     List<Gasto> queryForTipoId(long id);
+
+    @Query("SELECT SUM(valor) AS total FROM gastos")
+    float getTotalSomaGastos();
 }

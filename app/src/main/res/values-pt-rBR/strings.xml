@@ -101,4 +101,16 @@
     <string name="menuItemNovoTipo">Adicionar</string>
     <string name="menuItemLimparCampoTipo">Limpar</string>
 
+    <string name="textViewValorNovaMeta">Insira sua Renda</string>
+
+    <string name="textViewDataNovaMeta">Data da Meta</string>
+    <string name="alterar_meta">Mudar Meta</string>
+    <string name="meta">Meta</string>
+    <string name="deseja_realmente_apagar_meta">Deletar Meta?</string>
+    <string name="menuItemAdicionarMeta">Adicionar Meta</string>
+    <string name="nova_meta">Nova Meta</string>
+    <string name="meta_vazia">Meta vazia</string>
+    <string name="data_meta_vazia">Data da Meta Vazia</string>
+    <string name="menuItemMetas">Meta</string>
+
 </resources>

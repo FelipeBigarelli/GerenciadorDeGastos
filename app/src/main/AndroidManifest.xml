@@ -26,6 +26,12 @@
             android:name=".TipoGastoActivity"
             android:exported="false" />
         <activity
+            android:name=".MetasActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MetaActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainListPageActivity"
             android:exported="true">
             <intent-filter>

@@ -1,5 +1,6 @@
 package com.example.gerenciadordegastos;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -20,11 +21,21 @@ public class SobreActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_autoria_app);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void cancelar(){
         setResult(Activity.RESULT_CANCELED);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        cancelar();
     }
 
     @Override
@@ -34,18 +45,11 @@ public class SobreActivity extends AppCompatActivity {
         return true;
     }
 
-
-
-    @Override
-    public void onBackPressed() {
-        cancelar();
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         switch(item.getItemId()){
-            case R.id.menuItemVoltarSobre:
+            case android.R.id.home:
                 cancelar();
                 return true;
 
